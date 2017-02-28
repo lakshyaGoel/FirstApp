@@ -90,7 +90,11 @@ class ViewController: UIViewController {
         if(currentMode == .no_mode_set){
             savedNum = labelInt
         }
-        label.text = "\(labelInt)"
+        
+        let formatter:NumberFormatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        let num:NSNumber = NSNumber(value: labelInt)
+        label.text = formatter.string(from: num)
     }
     
     func changeMode(_ newMode: modes) {
