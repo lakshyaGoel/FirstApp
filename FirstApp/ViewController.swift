@@ -49,10 +49,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didPressNumber(_ sender: UIButton) {
+        let stringValue:String? = sender.titleLabel?.text
+        labelString = labelString.appending(stringValue!)
+        updateText()
     }
     
     func updateText() {
-        
+        guard let labelInt:Int = Int(labelString) else {
+            return
+        }
+        label.text = "\(labelInt)"
     }
     
     func changeMode(_ newMode: modes) {
