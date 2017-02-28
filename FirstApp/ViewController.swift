@@ -46,6 +46,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didPressClear(_ sender: AnyObject) {
+        labelString = "0"
+        currentMode = .no_mode_set
+        savedNum = 0
+        lastButtonWasMode = false
+        label.text = "0"
     }
     
     @IBAction func didPressNumber(_ sender: UIButton) {
