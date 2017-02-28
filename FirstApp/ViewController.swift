@@ -34,12 +34,15 @@ class ViewController: UIViewController {
     }
 
     @IBAction func didPressPlus(_ sender: AnyObject) {
+        changeMode(.addition)
     }
     
     @IBAction func didPressSubtract(_ sender: AnyObject) {
+        changeMode(.subtraction)
     }
     
     @IBAction func didPressMultiply(_ sender: AnyObject) {
+        changeMode(.multiplication)
     }
     
     @IBAction func didPressEquals(_ sender: AnyObject) {
@@ -55,6 +58,10 @@ class ViewController: UIViewController {
     
     @IBAction func didPressNumber(_ sender: UIButton) {
         let stringValue:String? = sender.titleLabel?.text
+        if(lastButtonWasMode){
+            lastButtonWasMode = false
+            labelString = "0"
+        }
         labelString = labelString.appending(stringValue!)
         updateText()
     }
@@ -63,10 +70,18 @@ class ViewController: UIViewController {
         guard let labelInt:Int = Int(labelString) else {
             return
         }
+        if(currentMode == .no_mode_set){
+            savedNum = labelInt
+        }
         label.text = "\(labelInt)"
     }
     
     func changeMode(_ newMode: modes) {
+        if(savedNum == 0){
+            return
+        }
+        currentMode = newMode
+        lastButtonWasMode = true
         
     }
 
